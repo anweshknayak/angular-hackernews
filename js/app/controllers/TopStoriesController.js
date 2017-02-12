@@ -1,4 +1,3 @@
-// js/app/controllers/TopStoriesController
 (function() {
 'use strict';
 
@@ -9,12 +8,10 @@
   TopStoriesController.$inject = ['TopStoriesService'];
   function TopStoriesController(TopStoriesService) {
     var vm = this;
-    vm.stories = [];
+    vm.stories = []; //stores data fetches from api
     
 
     activate();
-
-    ////////////////
 
     function activate() {
       TopStoriesService 

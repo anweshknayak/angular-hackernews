@@ -10,7 +10,6 @@
     this.getStories = getStories;
     this.getStory = getStory;
 
-    ////////////////
 
     function getStories() {
       return $http.get('https://hacker-news.firebaseio.com/v0/topstories.json');
