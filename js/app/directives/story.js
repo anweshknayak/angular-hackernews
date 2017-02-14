@@ -1,25 +1,40 @@
-angular 
-  .module('app')
-  .directive('story', function(){
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        id: '=id'
-      },
-      templateUrl: 'views/story.html',
-      controller: function($scope, TopStoriesService) {
-        var vm = this;
-        
-        TopStoriesService
-          .getStory($scope.id)
-          .then(function(res){
-            vm.story = res.data; 
-          });
-      },
-      controllerAs: 'story',
-      link: function(scope, elem, attrs, ctrl) {
-        
-      }
+(function() {
+  'use strict';
+
+  angular
+    .module('app')
+    .directive('story', story);
+
+  story.$inject = ['TopStoriesService'];
+  function story(TopStoriesService) {
+    
+    var directive = {
+        bindToController: true,
+        controller: StoryDirectiveController,
+        controllerAs: 'vm',
+        link: link,
+        templateUrl: 'views/story.html',
+        restrict: 'E',
+        scope: {
+          id: '=id'
+        }
     };
-  });
+    return directive;
+    
+    function link(scope, element, attrs) {
+    }
+  }
+
+  function StoryDirectiveController (TopStoriesService) {
+    var vm = this;
+
+
+    TopStoriesService
+      .getStory(vm.id)
+      .then(function(res){
+        vm.story = res.data;
+        vm.title = vm.story.title;
+        vm.url = vm.story.url;
+      })
+  }
+})();
