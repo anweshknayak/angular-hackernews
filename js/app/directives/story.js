@@ -10,22 +10,22 @@
     
     var directive = {
         bindToController: true,
-        controller: StoryDirectiveController,
+        controller: StoryController,
         controllerAs: 'vm',
         link: link,
         templateUrl: 'views/story.html',
         restrict: 'E',
         scope: {
-          id: '=id'
+          id: '='
         }
     };
     return directive;
     
     function link(scope, element, attrs) {
-    }
+    } 
   }
 
-  function StoryDirectiveController (TopStoriesService) {
+  function StoryController (TopStoriesService) {
     var vm = this;
 
 
@@ -37,4 +37,5 @@
         vm.url = vm.story.url;
       })
   }
+  
 })();

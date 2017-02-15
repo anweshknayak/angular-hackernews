@@ -10,5 +10,7 @@
           templateUrl: 'views/top-stories.html', 
           controller: 'TopStoriesController as vm'
         })
+
+        
     });
 })();
