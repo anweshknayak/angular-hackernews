@@ -41,6 +41,8 @@
         vm.story = res.data;
         vm.title = vm.story.title;
         vm.url = vm.story.url;
+        vm.author = vm.story.by;
+        vm.score = vm.story.score;
         vm.domain = getFromUrl(vm.url);
       })
   }
