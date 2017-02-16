@@ -28,6 +28,12 @@
   function StoryController (TopStoriesService) {
     var vm = this;
 
+    //http://stackoverflow.com/questions/6941533/get-protocol-domain-and-port-from-url
+    function getFromUrl(url){
+      var a = document.createElement('a');
+      a.setAttribute('href', url);
+      return '(' + a.hostname + ')';
+    }
 
     TopStoriesService
       .getStory(vm.id)
@@ -35,6 +41,7 @@
         vm.story = res.data;
         vm.title = vm.story.title;
         vm.url = vm.story.url;
+        vm.domain = getFromUrl(vm.url);
       })
   }
   
