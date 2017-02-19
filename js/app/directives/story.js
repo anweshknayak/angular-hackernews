@@ -28,11 +28,22 @@
   function StoryController (TopStoriesService) {
     var vm = this;
 
-    //http://stackoverflow.com/questions/6941533/get-protocol-domain-and-port-from-url
     function getFromUrl(url){
       var a = document.createElement('a');
       a.setAttribute('href', url);
       return '(' + a.hostname + ')';
+    }
+
+    function getHoursAgo(seconds) {
+      var secondDifference = (Date.now()/1000) - seconds;
+      
+      if (secondDifference < 3600) {
+        var minutesAgo = secondDifference/60;
+        return Math.floor(minutesAgo) + ' minutes ago';
+      } else {
+        var hoursAgo = secondDifference/3600;
+        return Math.floor(hoursAgo) + ' hours ago';
+      }
     }
 
     TopStoriesService
@@ -44,6 +55,8 @@
         vm.author = vm.story.by;
         vm.score = vm.story.score;
         vm.domain = getFromUrl(vm.url);
+        vm.time = getHoursAgo(vm.story.time);
+
       })
   }
   
